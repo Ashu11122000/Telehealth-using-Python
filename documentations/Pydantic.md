@@ -709,4 +709,176 @@ Even though Pydantic is powerful, it has some limitations you should understand 
 
 ```python
 age = "25"  # converted to 25
+```
 
+---
+
+# Pydantic v1 vs v2 (Important)
+
+Pydantic has two major versions:
+
+| Feature            | v1                | v2                     |
+|--------------------|------------------|------------------------|
+| Serialization      | `.dict()`        | `.model_dump()`        |
+| Validators         | `@validator`     | `@field_validator`     |
+| Root Validator     | `@root_validator`| `@model_validator`     |
+| Config             | `class Config`   | `ConfigDict`           |
+
+Pydantic v2 is faster and recommended for new projects.
+
+---
+
+# ValidationError Handling
+
+Pydantic raises a ValidationError when input data does not match the expected schema. Handling this error is important in real-world applications.
+
+```python
+from pydantic import BaseModel, ValidationError
+
+class User(BaseModel):
+    age: int
+
+try:
+    user = User(age="abc")
+except ValidationError as e:
+    print(e)
+```
+## Explanation
+
+* Provides structured error output
+* Useful in APIs such as FastAPI for returning clear validation messages
+
+---
+
+# Aliases (Used in APIs)
+
+Aliases allow you to map external field names to internal variable names.
+
+```python
+from pydantic import BaseModel, Field
+
+class User(BaseModel):
+    full_name: str = Field(alias="name")
+
+data = {"name": "Ashish"}
+
+user = User(**data)
+print(user.full_name)
+```
+
+## Explanation
+
+* External API field names may differ from internal model attributes
+* Helps maintain clean internal naming while supporting external data formats
+
+---
+
+# Computed Fields (Pydantic v2)
+
+Computed fields allow you to dynamically generate values based on other fields.
+
+```python
+from pydantic import BaseModel, computed_field
+
+class User(BaseModel):
+    first_name: str
+    last_name: str
+
+    @computed_field
+    @property
+    def full_name(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+```
+
+---
+
+# Strict Types
+
+By default, Pydantic performs type coercion. Strict types disable this behavior.
+
+```python
+from pydantic import BaseModel, StrictInt
+
+class User(BaseModel):
+    age: StrictInt
+```
+
+## Explanation
+
+* "25" will raise a validation error instead of being converted to 25
+* Useful when strict data validation is required
+
+---
+
+# Enums Support
+
+Enums are used to define a fixed set of allowed values.
+
+```python
+from enum import Enum
+from pydantic import BaseModel
+
+class Role(str, Enum):
+    admin = "admin"
+    user = "user"
+
+class User(BaseModel):
+    role: Role
+```
+
+## Explanation
+
+* Ensures only predefined values are accepted
+* Commonly used in APIs and form validations
+
+---
+
+# Dataclasses Support
+
+Pydantic also supports Python dataclasses with validation.
+
+```python
+from pydantic.dataclasses import dataclass
+
+@dataclass
+class User:
+    name: str
+    age: int
+```
+
+---
+
+# ORM Mode / from_attributes
+
+Used to convert database or ORM objects into Pydantic models.
+
+```python
+from pydantic import BaseModel, ConfigDict
+
+class User(BaseModel):
+    name: str
+
+    model_config = ConfigDict(from_attributes=True)
+```
+
+# Explanation
+
+* Allows reading data from ORM objects (e.g., SQLAlchemy models)
+* Useful in backend applications with databases
+
+---
+
+# JSON Schema Generation
+
+Pydantic can generate a JSON schema representation of a model.
+
+```python
+print(User.model_json_schema())
+```
+
+## Explanation
+
+* Used in API documentation
+* Automatically generates schemas for tools like Swagger and OpenAPI
+
+---
