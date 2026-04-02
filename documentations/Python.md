@@ -1897,3 +1897,152 @@ import csv
 ```
 
 ---
+
+# 11. Advanced Concepts
+
+## Generators
+
+Generators are a special type of function that produce values one at a time using yield, instead of returning all values at once.
+
+They are used for lazy evaluation, meaning values are generated only when needed.
+
+Generators produce values lazily.
+
+A normal function:
+* Executes completely
+* Returns a single value using return
+
+A generator:
+* Pauses execution at yield
+* Saves its state (local variables, instruction pointer)
+* Resumes from where it left off
+* Memory efficient
+
+```python
+def gen():
+    yield 1
+```
+
+## Decorators
+
+Decorators are functions that modify or extend the behavior of other functions without changing their actual code.
+
+* Wrap functions to extend behavior.
+
+* Used heavily in FastAPI
+
+```python
+def deco(func):
+    def wrapper():
+        return func()
+    return wrapper
+```
+
+## Closures
+
+A closure is a function that remembers variables from its enclosing scope, even after that outer function has finished execution.
+
+```python
+def outer(x):
+    def inner():
+        return x
+    return inner
+
+func = outer(10)
+print(func())
+```
+
+## Context Managers
+
+Context managers are used to manage resources automatically, ensuring proper setup and cleanup.
+
+Manages resources automatically (`with`)
+
+```python
+with open("file.txt", "r") as f:
+    data = f.read()
+```
+
+* f is a variable that refers to the opened file object.
+
+Equivalent to:
+```python
+f = open("file.txt", "r")
+try:
+    data = f.read()
+finally:
+    f.close()
+```
+
+---
+
+# 12. Standard Library
+
+Python standard library = **batteries included**
+
+This means:
+
+* Python comes with a rich collection of built-in modules
+* You do not need external libraries for most common tasks
+* It provides ready-to-use solutions for:
+  → File handling
+  → OS interaction
+  → Data processing
+  → Functional programming
+
+* `os` → The os module provides a way to interact with the operating system.
+→ Acts as a bridge between Python and OS kernel
+* `sys` → interpreter  → The sys module provides access to Python runtime and interpreter internals.
+* `datetime` → time  → The datetime module is used for working with dates, times, and time intervals.
+
+---
+
+# 13. Dependency Management
+
+Dependency management is the process of handling external libraries/packages required by a project in a controlled, reproducible, and isolated way.
+
+It ensures:
+
+→ Your project runs consistently across environments
+→ Dependencies do not conflict with each other
+→ Development, testing, and production setups remain stable
+
+## Why Dependency Management is Critical?
+
+→ Without proper management:
+
+→ Different developers may have different versions of libraries
+→ Code may work on one machine but fail on another
+→ Upgrading one package may break others (dependency conflicts)
+
+→ This is often called: "Works on my machine" problem
+
+* `venv` → isolation → Separate project environments
+* `requirements.txt` → reproducibility → Same dependencies everywhere
+* `poetry` → modern tool → Lock specific versions
+
+| Feature            | venv         | requirements.txt   | poetry               |
+| ------------------ | ------------ | ------------------ | -------------------- |
+| Purpose            | Isolation    | Dependency listing | Full management tool |
+| Dependency Resolve | No           | No                 | Yes                  |
+| Lock File          | No           | No                 | Yes                  |
+| Ease of Use        | Simple       | Simple             | Advanced             |
+| Best For           | All projects | Small/medium       | Production systems   |
+
+---
+
+# 14. Testing
+
+Ensures correctness.
+
+* Unit testing - testing individual components (smallest units) of code in isolation. (unit = function, method or class). It ensures each piece of code works correctly on it own.
+* Integration testing - checks how multiple components work together. Ensures interactions between modules is correct.
+
+---
+
+# 15. Logging & Debugging
+
+Logging = production monitoring - recording what application is doing during execution
+Debugging = development analysis - process of finding and fixing bugs in code
+
+---
