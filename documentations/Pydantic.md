@@ -32,7 +32,7 @@ Pydantic is a Python library used for data validation and parsing using type hin
 
 ---
 
-# Where it is used (FastAPI, backend systems, APIs, etc.)
+# Where it is used?
 
 Pydantic as a smart gatekeeper.
 * We give some data (from APIs, files, etc.), it checks data is correct or not?
