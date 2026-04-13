@@ -55,6 +55,16 @@ Access the API
 
 ---
 
+## Async Server Gateway Interface (ASGI)
+
+* A standard for handling async requests.
+* Handles many requests at once (High Performance).
+* FastAPI runs on ASGI Servers like Uvicorn
+* **Uvicorn** - lightweight, high performance web servers that runs Python's FastAPI apps and handles async incoming HTTP requests.
+
+---
+
+
 ## Path Parameters
 
 Path parameters allow you to pass dynamic values in the URL.
