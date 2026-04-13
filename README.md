@@ -3,106 +3,110 @@
 ---
 
 ## Overview
-The Telehealth Backend System is a scalable, modular backend application designed to support a digital healthcare platform 
+
+The Telehealth Backend System is a scalable, modular backend application designed to support a digital healthcare platform
 where patients can interact with doctors, manage medical records, and receive basic AI-assisted health insights.
 This project focuses on building a production-style backend architecture using modern technologies such as:
-   - FastAPI (high-performance APIs)
-   - PostgreSQL (relational database)
-   - SQLAlchemy (ORM)
-   - Pydantic (data validation)
-   - Docker (containerization)
+
+- FastAPI (high-performance APIs)
+- PostgreSQL (relational database)
+- SQLAlchemy (ORM)
+- Pydantic (data validation)
+- Docker (containerization)
 
 The system is designed with clean architecture principles, enabling future integration of advanced features such as AI models, GraphQL APIs, and microservices.
 
 ---
 
 ## Objectives
-   - Build a robust (strong) backend system for telehealth workflows
-   - Design a well-structured relational database
-   - Implement secure authentication and authorization
-   - Develop scalable REST APIs
-   - Ensure data validation and integrity
-   - Prepare the system for future AI integration
+
+- Build a robust (strong) backend system for telehealth workflows
+- Design a well-structured relational database
+- Implement secure authentication and authorization
+- Develop scalable REST APIs
+- Ensure data validation and integrity
+- Prepare the system for future AI integration
 
 ---
 
 ## Core Features
-* **Authentication & Security**
-   - User registration and login
-   - Password hashing (secure storage)
-   - JWT-based authentication
-   - Role-based access control (RBAC)
-   - Environment-based configuration using .env
 
-* **User Management**
-   - Patient and Doctor roles
-   - Profile management
-   - Role-based permissions
+- **Authentication & Security**
+  - User registration and login
+  - Password hashing (secure storage)
+  - JWT-based authentication
+  - Role-based access control (RBAC)
+  - Environment-based configuration using .env
 
-* **Appointment Management**
-   - Book appointments
-   - Cancel appointments
-   - Check doctor availability
-   - Prevent double booking (data integrity)
+- **User Management**
+  - Patient and Doctor roles
+  - Profile management
+  - Role-based permissions
 
-* **Medical Records**
-   - Store patient health records
-   - Maintain medical history
-   - Link records with users
+- **Appointment Management**
+  - Book appointments
+  - Cancel appointments
+  - Check doctor availability
+  - Prevent double booking (data integrity)
 
-* **Basic AI Symptom Module (Rule-Based)**
-   - Accept symptom inputs
-   - Perform simple rule-based analysis
-   - Classify risk levels (Low / Medium / High)
-   - Provide basic health suggestions
+- **Medical Records**
+  - Store patient health records
+  - Maintain medical history
+  - Link records with users
 
-* **API Infrastructure**
-   - RESTful API design
-   - CORS configuration for frontend integration
-   - Structured request/response validation
+- **Basic AI Symptom Module (Rule-Based)**
+  - Accept symptom inputs
+  - Perform simple rule-based analysis
+  - Classify risk levels (Low / Medium / High)
+  - Provide basic health suggestions
 
-* **Testing**
-   - Unit tests for critical modules
-   - API validation and error handling
+- **API Infrastructure**
+  - RESTful API design
+  - CORS configuration for frontend integration
+  - Structured request/response validation
 
-* **Containerization**
-   - Dockerized backend service
-   - Docker Compose for running:
-   - FastAPI server
-   - PostgreSQL database
+- **Testing**
+  - Unit tests for critical modules
+  - API validation and error handling
+
+- **Containerization**
+  - Dockerized backend service
+  - Docker Compose for running:
+  - FastAPI server
+  - PostgreSQL database
 
 ---
 
 ## Technology Stack
 
-* **Backend**
-   - Python
-   - FastAPI
-   - Pydantic
-   - SQLAlchemy
+- **Backend**
+  - Python
+  - FastAPI
+  - Pydantic
+  - SQLAlchemy
 
-* **Database**
-   - PostgreSQL
+- **Database**
+  - PostgreSQL
 
-* **Configuration**
-   - Dotenv (.env)
+- **Configuration**
+  - Dotenv (.env)
 
-* **Testing**
-   - Pytest / Unit Testing
+- **Testing**
+  - Pytest / Unit Testing
 
-* **API Features**
-   - REST APIs
-   - CORS support
+- **API Features**
+  - REST APIs
+  - CORS support
 
-* **DevOps**
-   - Docker
-   - Docker Compose
+- **DevOps**
+  - Docker
+  - Docker Compose
 
 ---
 
 ## Conclusion
 
-- This project demonstrates the development of a real-world backend system for a telehealth platform using modern Python technologies. 
+- This project demonstrates the development of a real-world backend system for a telehealth platform using modern Python technologies.
 - It emphasizes scalability, security, and clean architecture, making it a strong foundation for building advanced healthcare applications.
 
 ---
@@ -110,72 +114,72 @@ The system is designed with clean architecture principles, enabling future integ
 ## Main Flow of Application
 
 ┌────────────────────────────────────────────────────────────┐
-│                    Client Layer                            │
-│         (Postman / Future Next.js Frontend)                │
+│ Client Layer │
+│ (Postman / Future Next.js Frontend) │
 └───────────────────────────┬────────────────────────────────┘
-                            │ HTTP Request (JSON)
-                            ▼
+│ HTTP Request (JSON)
+▼
 ┌────────────────────────────────────────────────────────────┐
-│                    API Layer (FastAPI)                     │
+│ API Layer (FastAPI) │
 │------------------------------------------------------------│
-│ - Route Handling (/auth, /users, /appointments)            │
-│ - Request/Response Models (Pydantic)                       │
-│ - Input Validation                                         │
+│ - Route Handling (/auth, /users, /appointments) │
+│ - Request/Response Models (Pydantic) │
+│ - Input Validation │
 └───────────────────────────┬────────────────────────────────┘
-                            │
-                            ▼
+│
+▼
 ┌────────────────────────────────────────────────────────────┐
-│                Middleware Layer (Core)                     │
+│ Middleware Layer (Core) │
 │------------------------------------------------------------│
-│ - JWT Authentication                                       │
-│ - CORS Handling                                            │
-│ - Logging (optional)                                       │
-│ - Error Handling                                           │
+│ - JWT Authentication │
+│ - CORS Handling │
+│ - Logging (optional) │
+│ - Error Handling │
 └───────────────────────────┬────────────────────────────────┘
-                            │
-                            ▼
+│
+▼
 ┌────────────────────────────────────────────────────────────┐
-│                 Service Layer (Business Logic)             │
+│ Service Layer (Business Logic) │
 │------------------------------------------------------------│
-│ - User Service                                             │
-│ - Appointment Service                                      │
-│ - Medical Record Service                                   │
-│ - AI Symptom Service (Rule-based)                          │
+│ - User Service │
+│ - Appointment Service │
+│ - Medical Record Service │
+│ - AI Symptom Service (Rule-based) │
 └───────────────────────────┬────────────────────────────────┘
-                            │
-                            ▼
+│
+▼
 ┌────────────────────────────────────────────────────────────┐
-│              Repository Layer (Data Access)                │
+│ Repository Layer (Data Access) │
 │------------------------------------------------------------│
-│ - DB Queries                                               │
-│ - CRUD Operations                                          │
-│ - Abstraction over ORM                                     │
+│ - DB Queries │
+│ - CRUD Operations │
+│ - Abstraction over ORM │
 └───────────────────────────┬────────────────────────────────┘
-                            │
-                            ▼
+│
+▼
 ┌────────────────────────────────────────────────────────────┐
-│                 ORM Layer (SQLAlchemy)                     │
+│ ORM Layer (SQLAlchemy) │
 │------------------------------------------------------------│
-│ - Model Mapping (Python ↔ Tables)                          │
-│ - Session Management                                       │
-│ - Transactions                                             │
+│ - Model Mapping (Python ↔ Tables) │
+│ - Session Management │
+│ - Transactions │
 └───────────────────────────┬────────────────────────────────┘
-                            │
-                            ▼
+│
+▼
 ┌────────────────────────────────────────────────────────────┐
-│                  Database Layer (PostgreSQL)               │
+│ Database Layer (PostgreSQL) │
 │------------------------------------------------------------│
-│ - Users                                                    │
-│ - Doctors                                                  │
-│ - Appointments                                             │
-│ - Medical Records                                          │
+│ - Users │
+│ - Doctors │
+│ - Appointments │
+│ - Medical Records │
 └────────────────────────────────────────────────────────────┘
-                            │
-                            ▼
+│
+▼
 ┌────────────────────────────────────────────────────────────┐
-│               Infrastructure Layer (Docker)                │
-│ - FastAPI Container                                        │
-│ - PostgreSQL Container                                     │
+│ Infrastructure Layer (Docker) │
+│ - FastAPI Container │
+│ - PostgreSQL Container │
 └────────────────────────────────────────────────────────────┘
 
 ---
@@ -185,54 +189,55 @@ The system is designed with clean architecture principles, enabling future integ
     Client Request (Postman / Frontend)
                        │
                        ▼
+
 ┌──────────────────────────────────────────────┐
-│           FastAPI Router Layer               │
+│ FastAPI Router Layer │
 │----------------------------------------------│
-│ - Endpoint mapping (/auth, /appointments)    │
+│ - Endpoint mapping (/auth, /appointments) │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│        Dependency Injection Layer            │
+│ Dependency Injection Layer │
 │----------------------------------------------│
-│ - DB Session (Depends)                       │
-│ - Current User (JWT)                         │
+│ - DB Session (Depends) │
+│ - Current User (JWT) │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│        Middleware Layer (Pre-processing)     │
+│ Middleware Layer (Pre-processing) │
 │----------------------------------------------│
-│ - JWT Validation                             │
-│ - CORS Handling                              │
-│ - Logging                                    │
+│ - JWT Validation │
+│ - CORS Handling │
+│ - Logging │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│        Request Validation (Pydantic)         │
+│ Request Validation (Pydantic) │
 │----------------------------------------------│
-│ - Input schema validation                    │
-│ - Data parsing                               │
+│ - Input schema validation │
+│ - Data parsing │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│         Service Layer Call (Business Logic)  │
+│ Service Layer Call (Business Logic) │
 │----------------------------------------------│
-│ - Calls appropriate service                  │
+│ - Calls appropriate service │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│        Response Serialization (Pydantic)     │
+│ Response Serialization (Pydantic) │
 │----------------------------------------------│
-│ - Output schema                              │
-│ - JSON response formatting                   │
+│ - Output schema │
+│ - JSON response formatting │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
-              Client Response (JSON)
+│
+▼
+Client Response (JSON)
 
 ---
 
@@ -241,50 +246,51 @@ The system is designed with clean architecture principles, enabling future integ
              Client Request (HTTP)
                       │
                       ▼
+
 ┌──────────────────────────────────────────────┐
-│           CORS Middleware                    │
+│ CORS Middleware │
 │----------------------------------------------│
-│ - Checks allowed origins                     │
-│ - Handles preflight (OPTIONS) requests       │
+│ - Checks allowed origins │
+│ - Handles preflight (OPTIONS) requests │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│           Logging Middleware                 │
+│ Logging Middleware │
 │----------------------------------------------│
-│ - Logs request (method, URL, time)           │
-│ - Tracks performance                         │
+│ - Logs request (method, URL, time) │
+│ - Tracks performance │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│        Authentication Middleware (JWT)       │
+│ Authentication Middleware (JWT) │
 │----------------------------------------------│
-│ - Extract token from header                  │
-│ - Validate JWT                               │
-│ - Decode user info                           │
-│ - Attach user to request context             │
+│ - Extract token from header │
+│ - Validate JWT │
+│ - Decode user info │
+│ - Attach user to request context │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│        Authorization Check (RBAC)            │
+│ Authorization Check (RBAC) │
 │----------------------------------------------│
-│ - Verify role (Patient/Doctor/Admin)         │
-│ - Allow / Deny access                        │
+│ - Verify role (Patient/Doctor/Admin) │
+│ - Allow / Deny access │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│          Rate Limiting (Optional)            │
+│ Rate Limiting (Optional) │
 │----------------------------------------------│
-│ - Prevent abuse / DDoS                       │
-│ - Limit requests per user/IP                 │
+│ - Prevent abuse / DDoS │
+│ - Limit requests per user/IP │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
+│
+▼
 ┌──────────────────────────────────────────────┐
-│          Request Passed to API Layer         │
+│ Request Passed to API Layer │
 └──────────────────────────────────────────────┘
 
 ---
@@ -294,29 +300,30 @@ The system is designed with clean architecture principles, enabling future integ
                 Request from API Layer
                          │
                          ▼
+
 ┌──────────────────────────────────────────────┐
-│         Service Layer (Business Logic)       │
+│ Service Layer (Business Logic) │
 │----------------------------------------------│
-│                                              │
-│  ┌───────────────┐   ┌───────────────────┐   │
-│  │ User Service  │   │ Appointment       │   │
-│  │               │   │ Service           │   │
-│  │ - Register    │   │ - Book            │   │
-│  │ - Login       │   │ - Cancel          │   │
-│  │ - RBAC        │   │ - Availability    │   │
-│  └──────┬────────┘   └─────────┬─────────┘   │
-│         │                      │             │
-│         ▼                      ▼             │
-│  ┌───────────────┐   ┌───────────────────┐   │
-│  │ Medical       │   │ AI Symptom        │   │
-│  │ Record Service│   │ Service           │   │
-│  │ - Store       │   │ - Risk Analysis   │   │
-│  │ - History     │   │ - Rule Engine     │   │
-│  └──────┬────────┘   └─────────┬─────────┘   │
-│         │                      │             │
-│         └──────────────┬───────┘             │
-│                        ▼                     │
-│          Repository Layer (DB Access)        │
+│ │
+│ ┌───────────────┐ ┌───────────────────┐ │
+│ │ User Service │ │ Appointment │ │
+│ │ │ │ Service │ │
+│ │ - Register │ │ - Book │ │
+│ │ - Login │ │ - Cancel │ │
+│ │ - RBAC │ │ - Availability │ │
+│ └──────┬────────┘ └─────────┬─────────┘ │
+│ │ │ │
+│ ▼ ▼ │
+│ ┌───────────────┐ ┌───────────────────┐ │
+│ │ Medical │ │ AI Symptom │ │
+│ │ Record Service│ │ Service │ │
+│ │ - Store │ │ - Risk Analysis │ │
+│ │ - History │ │ - Rule Engine │ │
+│ └──────┬────────┘ └─────────┬─────────┘ │
+│ │ │ │
+│ └──────────────┬───────┘ │
+│ ▼ │
+│ Repository Layer (DB Access) │
 └──────────────────────────────────────────────┘
 
 ---
@@ -326,21 +333,22 @@ The system is designed with clean architecture principles, enabling future integ
                Service Layer
                      │
                      ▼
+
 ┌──────────────────────────────────────────────┐
-│            Repository Layer                  │
+│ Repository Layer │
 │----------------------------------------------│
-│ - UserRepository                             │
-│ - AppointmentRepository                      │
-│ - MedicalRecordRepository                    │
+│ - UserRepository │
+│ - AppointmentRepository │
+│ - MedicalRecordRepository │
 │----------------------------------------------│
-│ Responsibilities:                            │
-│ - CRUD operations                            │
-│ - Query abstraction                          │
-│ - No business logic                          │
+│ Responsibilities: │
+│ - CRUD operations │
+│ - Query abstraction │
+│ - No business logic │
 └──────────────────────┬───────────────────────┘
-                       │
-                       ▼
-            ORM Layer (SQLAlchemy)
+│
+▼
+ORM Layer (SQLAlchemy)
 
 ---
 
@@ -349,20 +357,20 @@ The system is designed with clean architecture principles, enabling future integ
                Repository Layer
                       │
                       ▼
-┌──────────────────────────────────────────────┐
-│             ORM Layer (SQLAlchemy)           │
-│----------------------------------------------│
-│ - Model Mapping (Python ↔ Tables)            │
-│ - Session Management                         │
-│ - Query Translation                          │
-│----------------------------------------------│
-│ Example:                                     │
-│ User → users table                           │
-└──────────────────────┬───────────────────────┘
-                       │
-                       ▼
-            Database Layer (PostgreSQL)
 
+┌──────────────────────────────────────────────┐
+│ ORM Layer (SQLAlchemy) │
+│----------------------------------------------│
+│ - Model Mapping (Python ↔ Tables) │
+│ - Session Management │
+│ - Query Translation │
+│----------------------------------------------│
+│ Example: │
+│ User → users table │
+└──────────────────────┬───────────────────────┘
+│
+▼
+Database Layer (PostgreSQL)
 
 ---
 
@@ -371,42 +379,45 @@ The system is designed with clean architecture principles, enabling future integ
                   ORM Layer
                      │
                      ▼
+
 ┌──────────────────────────────────────────────┐
-│           Database Layer (PostgreSQL)        │
+│ Database Layer (PostgreSQL) │
 │----------------------------------------------│
-│ Tables:                                      │
-│ - users                                      │
-│ - doctors                                    │
-│ - appointments                               │
-│ - medical_records                            │
+│ Tables: │
+│ - users │
+│ - doctors │
+│ - appointments │
+│ - medical_records │
 │----------------------------------------------│
-│ Features:                                    │
-│ - ACID transactions                          │
-│ - Indexing                                   │
-│ - Constraints (FK, PK)                       │
+│ Features: │
+│ - ACID transactions │
+│ - Indexing │
+│ - Constraints (FK, PK) │
 └──────────────────────────────────────────────┘
 
 ---
 
 ## Infrastructure Layer HLD architectural flow diagram
+
 ┌──────────────────────────────────────────────┐
-│           Infrastructure Layer               │
+│ Infrastructure Layer │
 │----------------------------------------------│
-│             Docker Compose                   │
+│ Docker Compose │
 │----------------------------------------------│
-│  ┌────────────────────┐   ┌────────────────┐ │
-│  │ FastAPI Container  │   │ PostgreSQL DB  │ │
-│  │--------------------│   │----------------│ │
-│  │ - API Server       │   │ - Data Storage │ │
-│  │ - Business Logic   │   │ - Tables       │ │
-│  └─────────┬──────────┘   └────────┬───────┘ │
-│            │                       │         │
-│            └────── Network ────────┘         │
+│ ┌────────────────────┐ ┌────────────────┐ │
+│ │ FastAPI Container │ │ PostgreSQL DB │ │
+│ │--------------------│ │----------------│ │
+│ │ - API Server │ │ - Data Storage │ │
+│ │ - Business Logic │ │ - Tables │ │
+│ └─────────┬──────────┘ └────────┬───────┘ │
+│ │ │ │
+│ └────── Network ────────┘ │
 └──────────────────────────────────────────────┘
 
 ---
 
 ## ERD Diagram
+
           ┌──────────────┐
           │    users     │
           │--------------│
@@ -419,16 +430,16 @@ The system is designed with clean architecture principles, enabling future integ
      ┌───────────┴────────────┐
      ▼                        ▼
 
-┌──────────────┐     ┌──────────────────┐
-│doctor_profile│     │  medical_records │
-│--------------│     │------------------│
-│ id (PK)      │     │ id (PK)          │
-│ user_id (FK) │     │ user_id (FK)     │
-│specialization│     │ title            │
-│ experience   │     │ description      │
-└──────┬───────┘     └──────┬───────────┘
-       │                    │
-       ▼                    ▼
+┌──────────────┐ ┌──────────────────┐
+│doctor_profile│ │ medical_records │
+│--------------│ │------------------│
+│ id (PK) │ │ id (PK) │
+│ user_id (FK) │ │ user_id (FK) │
+│specialization│ │ title │
+│ experience │ │ description │
+└──────┬───────┘ └──────┬───────────┘
+│ │
+▼ ▼
 
       ┌────────────────────────────┐
       │       appointments         │
@@ -468,108 +479,108 @@ The system is designed with clean architecture principles, enabling future integ
 
 telehealth-backend/
 │
-├── app/                          # Main application package
+├── app/ # Main application package
 │
-│   ├── main.py                   # FastAPI entry point
-│   ├── __init__.py
+│ ├── main.py # FastAPI entry point
+│ ├── **init**.py
 │
-│   ├── api/                      # API Layer (Routing)
-│   │   ├── deps.py               # Dependencies (JWT, DB session)
-│   │   ├── v1/                   # Versioning (best practice)
-│   │   │   ├── api.py            # Combine all routes
-│   │   │   ├── endpoints/
-│   │   │   │   ├── auth.py
-│   │   │   │   ├── users.py
-│   │   │   │   ├── doctors.py
-│   │   │   │   ├── appointments.py
-│   │   │   │   ├── medical_records.py
-│   │   │   │   ├── ai.py
-│   │   │   │   └── health.py     # Health check
+│ ├── api/ # API Layer (Routing)
+│ │ ├── deps.py # Dependencies (JWT, DB session)
+│ │ ├── v1/ # Versioning (best practice)
+│ │ │ ├── api.py # Combine all routes
+│ │ │ ├── endpoints/
+│ │ │ │ ├── auth.py
+│ │ │ │ ├── users.py
+│ │ │ │ ├── doctors.py
+│ │ │ │ ├── appointments.py
+│ │ │ │ ├── medical_records.py
+│ │ │ │ ├── ai.py
+│ │ │ │ └── health.py # Health check
 │
-│   ├── core/                     # Core configs & middleware
-│   │   ├── config.py             # Settings (.env loader)
-│   │   ├── security.py           # JWT, password hashing
-│   │   ├── middleware/
-│   │   │   ├── auth_middleware.py
-│   │   │   ├── logging.py
-│   │   │   └── rate_limit.py
+│ ├── core/ # Core configs & middleware
+│ │ ├── config.py # Settings (.env loader)
+│ │ ├── security.py # JWT, password hashing
+│ │ ├── middleware/
+│ │ │ ├── auth_middleware.py
+│ │ │ ├── logging.py
+│ │ │ └── rate_limit.py
 │
-│   ├── db/                       # Database setup
-│   │   ├── base.py               # Base class for models
-│   │   ├── session.py            # DB session
-│   │   ├── init_db.py            # Initial data (optional)
+│ ├── db/ # Database setup
+│ │ ├── base.py # Base class for models
+│ │ ├── session.py # DB session
+│ │ ├── init_db.py # Initial data (optional)
 │
-│   ├── models/                   # ORM Models (SQLAlchemy)
-│   │   ├── user.py
-│   │   ├── doctor_profile.py
-│   │   ├── appointment.py
-│   │   ├── medical_record.py
-│   │   ├── ai_assessment.py
-│   │   ├── symptom.py
-│   │   └── __init__.py
+│ ├── models/ # ORM Models (SQLAlchemy)
+│ │ ├── user.py
+│ │ ├── doctor_profile.py
+│ │ ├── appointment.py
+│ │ ├── medical_record.py
+│ │ ├── ai_assessment.py
+│ │ ├── symptom.py
+│ │ └── **init**.py
 │
-│   ├── schemas/                  # Pydantic Schemas
-│   │   ├── user.py
-│   │   ├── auth.py
-│   │   ├── doctor.py
-│   │   ├── appointment.py
-│   │   ├── medical_record.py
-│   │   ├── ai.py
-│   │   └── __init__.py
+│ ├── schemas/ # Pydantic Schemas
+│ │ ├── user.py
+│ │ ├── auth.py
+│ │ ├── doctor.py
+│ │ ├── appointment.py
+│ │ ├── medical_record.py
+│ │ ├── ai.py
+│ │ └── **init**.py
 │
-│   ├── repositories/             # Data Access Layer
-│   │   ├── user_repository.py
-│   │   ├── doctor_repository.py
-│   │   ├── appointment_repository.py
-│   │   ├── medical_repository.py
-│   │   ├── ai_repository.py
-│   │   └── __init__.py
+│ ├── repositories/ # Data Access Layer
+│ │ ├── user_repository.py
+│ │ ├── doctor_repository.py
+│ │ ├── appointment_repository.py
+│ │ ├── medical_repository.py
+│ │ ├── ai_repository.py
+│ │ └── **init**.py
 │
-│   ├── services/                 # Business Logic Layer
-│   │   ├── user_service.py
-│   │   ├── auth_service.py
-│   │   ├── doctor_service.py
-│   │   ├── appointment_service.py
-│   │   ├── medical_service.py
-│   │   ├── ai_service.py
-│   │   └── __init__.py
+│ ├── services/ # Business Logic Layer
+│ │ ├── user_service.py
+│ │ ├── auth_service.py
+│ │ ├── doctor_service.py
+│ │ ├── appointment_service.py
+│ │ ├── medical_service.py
+│ │ ├── ai_service.py
+│ │ └── **init**.py
 │
-│   ├── utils/                    # Utility functions
-│   │   ├── helpers.py
-│   │   ├── constants.py
-│   │   └── exceptions.py
+│ ├── utils/ # Utility functions
+│ │ ├── helpers.py
+│ │ ├── constants.py
+│ │ └── exceptions.py
 │
-│   ├── tests/                    # Unit Tests
-│   │   ├── test_auth.py
-│   │   ├── test_users.py
-│   │   ├── test_appointments.py
-│   │   └── __init__.py
+│ ├── tests/ # Unit Tests
+│ │ ├── test_auth.py
+│ │ ├── test_users.py
+│ │ ├── test_appointments.py
+│ │ └── **init**.py
 │
-├── documentations/               # Project Documentation (NEW)
-│   ├── CORS.md
-│   ├── Dotenv.md
-│   ├── FastAPI.md
-│   ├── Pydantic.md
-│   ├── Python.md
-│   ├── SQLAlchemy.md
-│   ├── Unit_Test.md
-│   ├── UV.md
-│   └── Virtual_Environment.md
+├── documentations/ # Project Documentation (NEW)
+│ ├── CORS.md
+│ ├── Dotenv.md
+│ ├── FastAPI.md
+│ ├── Pydantic.md
+│ ├── Python.md
+│ ├── SQLAlchemy.md
+│ ├── Unit_Test.md
+│ ├── UV.md
+│ └── Virtual_Environment.md
 │
-├── alembic/                      # DB migrations
-│   ├── versions/
-│   ├── env.py
-│   ├── script.py.mako
+├── alembic/ # DB migrations
+│ ├── versions/
+│ ├── env.py
+│ ├── script.py.mako
 │
 ├── alembic.ini
 │
-├── .env                          # Environment variables
-├── .env.example                  # Sample env
+├── .env # Environment variables
+├── .env.example # Sample env
 │
-├── docker-compose.yml            # Docker setup
-├── Dockerfile                    # App container
+├── docker-compose.yml # Docker setup
+├── Dockerfile # App container
 │
-├── pyproject.toml                # Dependencies (uv)
+├── pyproject.toml # Dependencies (uv)
 ├── README.md
 
 ---
@@ -619,7 +630,6 @@ Work inside the following directories:
 `db/session.py`
 `db/base.py`
 
-
 ---
 
 ### 3. Application Entry Point
@@ -631,6 +641,7 @@ Work inside the following directories:
 **File:**
 
 `app/main.py`
+
 - Create FastAPI app
 - Add CORS
 - Include routers (later)
@@ -639,6 +650,6 @@ Work inside the following directories:
 
 ## Output of Phase 1
 
-- App runs successfully  
-- Database connection works  
-- Configuration is properly managed  
+- App runs successfully
+- Database connection works
+- Configuration is properly managed
