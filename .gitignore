@@ -8,3 +8,5 @@
 # python versions
 .python-versions
 
+
+.early.coverage
