@@ -5,10 +5,19 @@ from sqlalchemy.orm import Session
 # Import Appointment model (ORM model mapped to appointments table in DB)
 from app.models.appointment import Appointment
 
+# Import datetime for handling date-time values
+from datetime import datetime
+
 # Repository Pattern class:
 # - This class is responsible for handling all database operations related to Appointment
 # Helps in separating database logic from business logic (clean architecture)
 class AppointmentRepository:
+    
+    # Constructor -> receives DB session (dependency injection)
+    def __init__(self, db: Session):
+        
+        # Store DB session for reuse
+        self.db = db
     
     # Create method
     # Used to insert a new appointment into the database
@@ -17,18 +26,26 @@ class AppointmentRepository:
     def create(self, db: Session, appointment: Appointment):
         
         # add() -> stage the object for insertion into DB (does not execute immediately)
-        db.add(appointment)
+        self.db.add(appointment)
         
         # commit() -> permanently save changes (Insert query executed here)
         # Transaction gets committed
-        db.commit()
+        self.db.commit()
         
         # refresh() -> reloads the object from DB
         # Useful to get auto-generated values (like id, timestamps)
-        db.refresh(appointment)
+        self.db.refresh(appointment)
         
         # return the newly created appointment object
         return appointment
+    
+    # GET APPOINTMENT BY ID
+    def get_by_id(self, appointment__id: int):
+        
+        # query(Appointment) -> SELECT * FROM appointments
+        # filter(...) -> WHERE condition
+        # first() -> returns first match or None
+        return self.db.query(Appointment).filter(Appointment.id == appointment__id).first() 
     
     # GET APPOINTMENTS BY USER
     # Fetch all appointments where user is either patient or doctor
@@ -76,7 +93,7 @@ class AppointmentRepository:
     def delete(self, db: Session, appointment: Appointment):
 
         # delete() → marks object for deletion (not executed yet)
-        db.delete(appointment)
+        self.db.delete(appointment)
 
         # commit() → executes DELETE query and persists changes
-        db.commit()
+        self.db.commit()
